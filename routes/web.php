@@ -13,25 +13,4 @@
 |
 */
 
-$router->get('/{key}/{channel}/{event}/{message}', function ($key, $channel, $event, $message) {
-    try {
-        $pusher = new Pusher\Pusher(
-            $key,
-            config('pusher.secret'),
-            config('pusher.id'),
-            [
-                'cluster' => config('pusher.cluster'),
-                'useTLS' => true
-            ]
-        );
-
-        $data = base64_decode($message);
-        $data = json_decode($data, true);
-
-        $pusher->trigger($channel, $event, $data);
-
-        return response()->json(['message' => 'Success']);
-    } catch (\Exception $e) {
-        return response()->json(['message' => $e->getMessage()], 500);
-    }
-});
+$router->get('/{key}/{channel}/{event}/{data}', 'HandlerController@handle');
