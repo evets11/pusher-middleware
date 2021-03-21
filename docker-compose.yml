@@ -24,12 +24,13 @@ services:
     restart: unless-stopped
     tty: true
     ports:
-      - "${PORT:-8282}:80"
+      - "${PORT:-8282}:443"
     environment:
       - NGINX_HOST=localhost
     volumes:
       - ./:/var/www
       - ./docker/nginx/conf.d/:/etc/nginx/conf.d/
+      - ./docker/nginx/ssl/:/etc/nginx/ssl/
     networks:
       - app-network
 
