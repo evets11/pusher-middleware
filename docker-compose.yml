@@ -24,7 +24,7 @@ services:
     restart: unless-stopped
     tty: true
     ports:
-      - "${PORT:-8282}:443"
+      - "${PORT:-8282}:80"
     environment:
       - NGINX_HOST=localhost
     volumes:
