@@ -3,13 +3,15 @@
 A super simple app which acts as a middleware to push message to Pusher.
 
 ## Docker
-By default the supplied docker compose setup will run the app with on port 8282.
+By default the supplied docker compose setup will run the app on port 8282.
 
-You can use SSL but updating the nginx `app.conf` and `docker-compose` files.  SSL certs named "default" need to be placed in `docker/nginx/ssl`.  These can generated using a commaind like...
+You can use SSL by creating certs named "default" in `docker/nginx/ssl`.  These can generated using a commaind like...
 
 ```
-openssl req -newkey rsa:2048 -nodes -keyout default.key -x509 -days 365 -out default.crt
+openssl req -newkey rsa:2048 -nodes -keyout docker/nginx/ssl/default.key -x509 -days 365 -out docker/nginx/ssl/default.crt
 ```
+
+The nginx `app.conf` file needs to be updated to use SSL and the `docker-compose.yml` may need to be updated to use a different point depending on the setup.
 
 ## Example Request
 ```
